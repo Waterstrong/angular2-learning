@@ -8,4 +8,19 @@ import {NoteCard} from './note-card'
     directives: [NoteCard]
 })
 
-export class Notes {}
+export class Notes {
+    notes = [
+        {
+            title: 'title',
+            value: 'value'
+        },
+        {
+            title: 'title2',
+            value: 'value2'
+        }
+    ]
+
+    checkCard(note) {
+        console.log(note)
+    }
+}

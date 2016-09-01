@@ -1,4 +1,4 @@
-import {Component} from "@angular/core"
+import {Component, Input, Output, EventEmitter} from "@angular/core"
 
 @Component({
     selector: 'note-card',
@@ -6,4 +6,11 @@ import {Component} from "@angular/core"
     styles: [require('./note-card.css')]
 })
 
-export class NoteCard {}
+export class NoteCard {
+    @Input() note
+    @Output() checked = new EventEmitter()
+
+    onChecked() {
+        this.checked.emit(this.note)
+    }
+}
