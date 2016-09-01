@@ -20,7 +20,7 @@ export class Notes {
         }
     ]
 
-    checkCard(note) {
-        console.log(note)
+    checkCard(note, index) {
+        this.notes.splice(index, 1)
     }
 }
