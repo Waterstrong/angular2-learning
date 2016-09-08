@@ -1,4 +1,4 @@
-import {Component} from "@angular/core"
+import {Component, Output, EventEmitter} from "@angular/core"
 
 @Component({
     selector: 'note-creator',
@@ -10,8 +10,16 @@ export class NoteCreator {
     newNote = {
         title: '',
         value: ''
-    }
+    };
+
+    @Output() onCreateNode = new EventEmitter();
+
     createNode() {
-        console.log(this.newNote)
+        const {title, value} = this.newNote;
+
+        this.onCreateNode.emit({title, value});
+
+        return false;
+
     }
 }
