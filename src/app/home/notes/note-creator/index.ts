@@ -9,12 +9,12 @@ import {isEmpty} from 'lodash'
 })
 
 export class NoteCreator {
-    newNote = {
-        title: '',
-        value: ''
-    };
+    isFocus:boolean = false;
 
-    @Output() onCreateNote = new EventEmitter();
+    newNote = {title: '', value: ''};
+
+    @Output()
+    onCreateNote = new EventEmitter();
 
     createNote() {
         const {title, value} = this.newNote;
@@ -25,7 +25,7 @@ export class NoteCreator {
         this.onCreateNote.emit({title, value});
 
         this.newNote = {title: '', value: ''};
-        
+
         return false;
 
     }
