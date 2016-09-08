@@ -7,7 +7,11 @@ import {Component} from "@angular/core"
 })
 
 export class NoteCreator {
+    newNote = {
+        title: '',
+        value: ''
+    }
     createNode() {
-        alert('ds')
+        console.log(this.newNote)
     }
 }
