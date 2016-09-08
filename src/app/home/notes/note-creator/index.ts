@@ -13,22 +13,26 @@ import {ColorPicker} from './color-picker'
 export class NoteCreator {
     isFocus:boolean = false;
 
-    newNote = {title: '', value: ''};
+    newNote = {title: '', value: '', color: ''};
 
     @Output()
     onCreateNote = new EventEmitter();
 
     createNote() {
-        const {title, value} = this.newNote;
+        const {title, value, color} = this.newNote;
         if(isEmpty(title) || isEmpty(value)) {
             return false;
         }
 
-        this.onCreateNote.emit({title, value});
+        this.onCreateNote.emit({title, value, color});
 
-        this.newNote = {title: '', value: ''};
+        this.newNote = {title: '', value: '', color: ''};
 
         return false;
-
     }
+
+    addColor(color) {
+        this.newNote.color = color;
+    }
+
 }
