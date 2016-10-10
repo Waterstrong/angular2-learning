@@ -4,28 +4,29 @@ import {Observable} from 'rxjs'
 
 @Injectable()
 export class ApiService {
-    api_url: string = 'http://localhost:3500'
-    headers: Headers = new Headers({
+    api_url:string = 'http://localhost:3500'
+    headers:Headers = new Headers({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
     })
 
-    constructor(private http: Http){}
+    constructor(private http:Http) {
+    }
 
-    private getJson(response: Response) {
+    private getJson(response:Response) {
         return response.json()
     }
 
-    private checkError(response: Response): Response {
-        if(response.status >= 200 && response.status < 400) {
+    private checkError(response:Response):Response {
+        if (response.status >= 200 && response.status < 400) {
             return response
-        }else {
+        } else {
             let err = new Error(response.statusText)
             throw err
         }
     }
 
-    get(path: string): Observable<any> {
+    get(path:string):Observable<any> {
         return this.http.get(`${this.api_url}${path}`, {
                 headers: this.headers
             })
@@ -34,7 +35,7 @@ export class ApiService {
             .map(this.getJson)
     }
 
-    post(path: string, body): Observable<any> {
+    post(path:string, body):Observable<any> {
         return this.http.post(`${this.api_url}${path}`, JSON.stringify(body), {
                 headers: this.headers
             })
@@ -42,5 +43,15 @@ export class ApiService {
             .catch(err => Observable.throw(err))
             .map(this.getJson)
     }
+
+    delete(path:string):Observable<any> {
+        return this.http.delete(`${this.api_url}${path}`, {
+                headers: this.headers
+            })
+            .map(this.checkError)
+            .catch(err => Observable.throw(err))
+            .map(this.getJson)
+    }
+
 
 }
