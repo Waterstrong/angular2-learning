@@ -18,7 +18,7 @@ export class Notes {
             .subscribe(res => this.notes = res.data)
     }
 
-    checkCard(note, index) {
+    checkCard(note) {
         this.noteService.completeNote(note)
             .subscribe(note => {
                 let index = this.notes.findIndex(localNote => localNote.id === note.id)
