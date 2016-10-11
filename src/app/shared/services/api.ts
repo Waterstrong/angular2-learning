@@ -35,7 +35,7 @@ export class ApiService {
             .map(this.getJson)
     }
 
-    post(path:string, body):Observable<any> {
+    post(path:string, body, any):Observable<any> {
         return this.http.post(`${this.api_url}${path}`, JSON.stringify(body), {
                 headers: this.headers
             })
@@ -53,5 +53,8 @@ export class ApiService {
             .map(this.getJson)
     }
 
+    setHeaders(headers:{ [key: string]: string }):void {
+        Object.entries(headers).forEach(([key, value]) => this.headers.set(key, value))
+    }
 
 }
