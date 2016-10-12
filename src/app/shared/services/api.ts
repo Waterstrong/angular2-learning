@@ -35,7 +35,7 @@ export class ApiService {
             .map(this.getJson)
     }
 
-    post(path:string, body, any):Observable<any> {
+    post(path:string, body:any):Observable<any> {
         return this.http.post(`${this.api_url}${path}`, JSON.stringify(body), {
                 headers: this.headers
             })
